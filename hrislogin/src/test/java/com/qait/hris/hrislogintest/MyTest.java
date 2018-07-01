@@ -65,5 +65,41 @@ public class MyTest {
 		Assert.assertTrue(obj5.driver.getCurrentUrl().contains("Your"));
 		System.out.println("Correct username and correct pass verified");
 	}
+	
+		@Test(priority=5)
+	public void logout() {
+
+		driver.findElement(By.xpath("//*[@id=\"page\"]/div/div[1]/div[2]/ul/li/a")).click();
+		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+		driver.findElement(By.xpath("//*[@id=\"page\"]/div/div[1]/div[2]/ul/li/ul/li[4]/a/span")).click();
+		
+
+	}
+	  @Test(priority=6)
+	  public void rememberMe() {
+		  driver.findElement(By.cssSelector("#txtUserName")).sendKeys("divyankdawar");
+		  driver.findElement(By.cssSelector("#txtPassword")).sendKeys("Qait@123");
+		  driver.findElement(By.name("txtSsi")).click();
+		  driver.findElement(By.cssSelector("#txtPassword")).submit();  
+		  Assert.assertEquals("https://hris.qainfotech.com:8086/empFeedback/yourFeedback", driver.getCurrentUrl());
+	  } 
+	  
+	  //tc7 - successful login
+	  @Test(priority=7)
+	  public void successfulLogin() {
+		  driver.findElement(By.name("txtUserName")).sendKeys("divyankdawar");
+		  driver.findElement(By.name("txtPassword")).sendKeys("Qait@123");
+		  driver.findElement(By.name("txtPassword")).submit();  
+		  Assert.assertEquals("https://hris.qainfotech.com:8086/empFeedback/yourFeedback", driver.getCurrentUrl());
+	  }
+	  
+	  
+	  @Test(priority=8)
+	  public void timeSheet_applyLeave() {
+		  driver.findElement(By.className("time")).click();
+		  driver.findElement(By.className("apply_leave")).click();
+	  }
+
+}
 
 }
